@@ -41,7 +41,7 @@ void Student::setInitials(string buf) {
 string Student::getInitials() { return initials; }
 
 void Student::setGroup(int buf) {
-	if (buf < 1000 || buf > 10000)
+	if (buf < 1000 && buf > 10000)
 		throw exception("Неверный номер группы");
 
 	group = buf;

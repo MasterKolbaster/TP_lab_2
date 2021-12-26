@@ -162,14 +162,65 @@ int main()
 		system("cls");
 	}
 
-
 	exc();
 	delete[]students;
 
+	// Задание 2
+	system("pause");
+	system("cls");
+
+	ifstream fin;
+	string bufStr;
+	string word;
+	int cnt = 0;
+	int j = 0;
+	string word_now;
+	fin.open("file.txt");
+
+	try
+	{
+		if (!fin.is_open())
+			throw exception("Файл отсутствует");
+		std::cout << "Введите слово для поиска" << std::endl;
+		cin >> word;
+
+		while (getline(fin, bufStr))
+		{
+
+			for (int i = 0; i < bufStr.size(); i++)
+			{
+				while (bufStr[i] != ' ' && bufStr[i] != ',' && bufStr[i] != '.' && bufStr[i] != ';' && bufStr[i] != '-' && bufStr[i] != '\0')
+				{
+
+					word_now.push_back(bufStr[i]);
+					if (word == word_now)
+					{
+						cout << bufStr << endl;
+						cnt++;
+						break;
+					}
+					i++;
+					
+
+				}
+				word_now.clear();
+			}
+		}
+		if (cnt == 0)
+			cout << "Таких строк нет" << endl;
+
+	}
+	catch (exception & exp)
+	{
+		cout << "Исключение: " << exp.what() << endl << endl;
+	}
+
+	fin.close();
+
+	return 0;
 }
 
-void sort() 
-{
+void sort() {
 	string bufStr1, bufStr2, bufStr3;
 	int bufInt1, bufInt2, bufInt3;
 	float sr1, sr2;
